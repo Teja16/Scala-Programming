@@ -1,0 +1,8 @@
+Scala class hierarchy:
+
+All scala types extend a bulitin type called "Any". This type is the root of the hierarchy of all Scala types. It has two direct subtypes:
+
+ - AnyVal is the root class of all value types. These types are represented as primitive types in the JVM.
+ - AnyRef is the root class of all object types. It is an alias for the class java.lang.Object.
+
+A variable of type AnyVal directly contains the value, whereas a variable of type AnyRef contains the address of an object stored somewhere in memory.
