@@ -1,8 +1,49 @@
 Scala class hierarchy:
 
-All scala types extend a bulitin type called "Any". This type is the root of the hierarchy of all Scala types. It has two direct subtypes:
+All Scala types extend a builtin type called "Any". This type is the root of the hierarchy of all Scala types. It has two direct subtypes:
 
  - AnyVal is the root class of all value types. These types are represented as primitive types in the JVM.
  - AnyRef is the root class of all object types. It is an alias for the class java.lang.Object.
 
 A variable of type AnyVal directly contains the value, whereas a variable of type AnyRef contains the address of an object stored somewhere in memory.
+
+Any
+ -AnyVal
+ -AnyRef
+
+AnyVal
+ -Double
+ -Float
+ -Long
+ -Int
+ -Short
+ -Byte
+ -Unit
+ -Boolean
+ -Char
+ -Nothing
+
+AnyRef
+ -list
+ -option
+ -your class
+ -Null
+
+A new class indirectly inherits AnyRef.(alias java.lang.object). your class inherits from all the default methods implemented in Object. Its most important methods are as follows:
+
+def toString: String
+returns a string representation of an object.
+This method is called whenever you print an object using println. The default implementation returns the class's name followed by the address of the object in memory.
+
+def equals(obj: Object): Boolean
+returns true if the object is equal to another object, and false otherwise.
+This method is called whenever you compare two objects using ==. The default implementation only compares the objects' references, and hence is equivalent to eq.
+Fortunately, most classes from the Java and Scala SDK override this method to provide a good comparison.
+For instance, the class java.lang.String overrides the equals method to compare the content of the strings, character by character.
+Therefore, when you compare two strings with ==, the result will be true if the strings are the same, even if they are stored in different places in memory.
+
+def hashCode: Int
+is called whenever you put an object in Set or if you use it as a key in Map.
+The default implementation is based on the address of the object.
+You can override this method if you want to have a better distribution of the data in Set or Map, which can improve the performance of these collections.
+However, if you do so, you must make sure that hashCode is consistent with equals: if two objects are equal, their hashCodes must also be equal.
